@@ -81,4 +81,4 @@ Day: (31-Fr)
 		/BankMember/add/{firstname}/{lastname}/{accountnumber}/{balance}/{customerranking}/{internalinfo}
 		/name/{name}
 		/id/{id}
-		All the variables that can be changed are between {} signs.
+		All the variables that can be changed are between {} signs. 
