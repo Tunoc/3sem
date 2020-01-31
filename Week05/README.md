@@ -11,7 +11,6 @@ Day: (29-We)
 	To answer the question from Exercise 2: Json endpoint - 3.a
 	The content that we see is JSON format - Key Value pair with a HTTP connection ok code 200 - 
 	And the more info about the webpage.
-
 	HTTP/1.1 200 
 	Content-Type: application/json
 	Content-Length: 31
@@ -40,7 +39,6 @@ Day: (31-Fr)
 		Start by using the /BankMember/populate/database path, in order to populate the database 
 		and allowing the other paths to work properly.
 		(Only added dummy data with the populated database path)
-		
 		There is a difference between the paths because the assignment requested that we have seperate
 		sets of data for "Bank Members" or just regular members. I used DTO's to wrap the bankcustomers
 		and therby limiting the data that gets out by just using the normal /bankcustomer path.
