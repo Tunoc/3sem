@@ -6,12 +6,12 @@ Day: (28-Tu)
 		because we are going to learn about, how to test, in our 3 week.
 		The exercise can be found in the folder of day 28.
 		After this day we were expected to:
-		..* Redegøre for ORM frameworks generelt og deres pros/cons
-		..* Redegøre for forskellen mellem JPA og andre persistensmetoder
-		..* Redegøre for de mest brugte klasser og metoder i JPA
-		..* Oprette et basalt Java projekt med JPA og benytte annoteringer til at persistere entiteter i database
-		..* Redegøre for og demonstrere brug af begreber som EntityManager, EntityManagerFactory samt Persistence.xml
-		..* Demonstrere Insert og Select
+		* Redegøre for ORM frameworks generelt og deres pros/cons
+		* Redegøre for forskellen mellem JPA og andre persistensmetoder
+		* Redegøre for de mest brugte klasser og metoder i JPA
+		* Oprette et basalt Java projekt med JPA og benytte annoteringer til at persistere entiteter i database
+		* Redegøre for og demonstrere brug af begreber som EntityManager, EntityManagerFactory samt Persistence.xml
+		* Demonstrere Insert og Select
 		All of the above goals were covered by the solutions that we see in the folder of day 28.
 
 Day: (29-We)
