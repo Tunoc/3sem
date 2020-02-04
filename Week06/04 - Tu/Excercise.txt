@@ -1,0 +1,61 @@
+1)
+sudo lsof -i -P -n
+ss -tulw
+http://prntscr.com/qx9v4c
+
+2)
+It describes what is happening on port :3306.
+It is MYSQL that is listening on that port.
+
+3)
+Locate what to process to kill.
+
+"ps aux | grep chrome" (grep is to limit - if we know the name for example chrome)
+
+The aux options are as follows:
+
+    a = show processes for all users
+
+    u = display the process’s user/owner
+
+    x = also show processes not attached to a terminal
+
+
+Then use "kill -9 [ID]".
+
+4)
+Find location on local machine. Git bash here.
+scp [FileName.jpg] user@167.71.45.165:/remote/directory
+You also could add options.
+
+5)
+Local terminal.
+scp user@167.71.45.165:/file/to/send/[FileName.jpg] "/local/directory"
+You also could add options.
+
+6)
+UFW is; "Uncomplicated Fire Wall".
+My status is inactive when i use the; "sudo ufw status".
+
+7)
+The way to open a port in the firewall is by typing the following.
+sudo ufw allow 22/tcp
+After that we can verify it.
+sudo ufw status verbose
+
+Opening the port 80 & 443.
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+Opening the port 53.
+sudo ufw allow 53
+
+And so on.
+https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14-04-lts/
+
+
+
+
+
+
+
