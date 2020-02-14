@@ -1,0 +1,11 @@
+.mydiv {
+    width: 25px;
+    height: 25px;
+    background-color: yellow;
+    margin: 1px;
+}
+
+.outerDiv {
+    width: 1px;
+    height: 1px;
+}

@@ -194,12 +194,26 @@ INSERT INTO cars (id,year,make,model,price) VALUES ( 1, 1997 'Ford','E350', 3000
 ...
 */
 
+function makeSql(arr) {
+    let result, obj, keys, values;
+    for (obj of arr) {
+        keys = Object.keys(obj);
+        values = Object.values(obj);
+        result += "INSERT INTO cars (" + keys.join() + ") VALUES ( "
+                + values.join(", ") + " );";
+    }
+    return result;
+}
+console.log(makeSql(cars));
 
-
-
-
-
-
+function makesqlstatement(array){
+    let resultString = "";
+    for(a = 0; a < cars.length; a++){
+        resultString += "INSERT INTO cars ("+ Object.keys(array[a]).join(", ") +") VALUES (" + Object.values(array[a]).join(", ") + "); \n";
+    }
+    return resultString;
+}
+console.log(makesqlstatement(cars));
 
 
 

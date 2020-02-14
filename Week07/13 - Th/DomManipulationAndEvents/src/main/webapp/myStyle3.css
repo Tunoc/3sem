@@ -1,0 +1,28 @@
+div {
+    width: 350px;
+    background-color: gray;
+    color: black;
+}
+
+.full {
+    display: table;
+    width: 100%;
+}
+
+.left,
+.right {
+    display: table-cell;
+    width: 50%;
+}
+
+#full1 {
+    margin-top: 50px;
+}
+
+#full2 {
+    margin-top: 100px;
+}
+
+body {
+    background-color: gray;
+}

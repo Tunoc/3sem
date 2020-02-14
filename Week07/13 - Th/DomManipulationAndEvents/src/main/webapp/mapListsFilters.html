@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Map List Filter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="myStyle3.css">
+</head>
+
+<body>
+    <!--Part 1-->
+    <div id="full1" class="full">
+        <div id="div1" class="left">
+            <!--The list generated from JS is put inside this div.-->
+        </div>
+        <div id="div2" class="right">
+            <form id="fid" name="form1" action="#">
+                Name to add: <input type="text" name="txt" id="name" />
+                <input type="submit" value="Add Name" id="button" />
+            </form>
+            <form id="fIdTop" name="formRemTop" action="#">
+                <input type="submit" value="Remove first" id="button" />
+            </form>
+            <form id="fIdBot" name="formRemBot" action="#">
+                <input type="submit" value="Remove last" id="button" />
+            </form>
+        </div>
+    </div>
+    <!--Part 2-->
+    <div id="full2" class="full">
+        <div id="div3" class="right">
+            <!--The table generated from JS is put inside this div.-->
+        </div>
+        <div id="div3" class="left">
+            <form id="fIdTable" name="form1" action="#">
+                Price: <input type="text" name="txt" id="lPrice" />
+                <input type="submit" value="Price less than" id="button" />
+            </form>
+
+        </div>
+    </div>
+    <script src="mapListFilters.js"></script>
+</body>
+
+</html>
