@@ -1,4 +1,0 @@
-Main.js inde i src.
-Sidste opgave 4a som er gul.
-2 versioner den ene er undefinded. Problemet kommer ved at result ikke er initialiseret.
-Find en løsning.
