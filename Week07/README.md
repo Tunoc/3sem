@@ -1,5 +1,5 @@
 # Week7:
-Most of the assignments were made, the biggest problem was not having enough hours in a day. But at the end after friday somehow my dorplet from digital ocean stopped working.
+Most of the assignments were made, the biggest problem was not having enough hours in a day. But at the end after friday somehow my dorplet from digital ocean stopped working, the way it should.
 
 There isn't a folder for each day because the Friday assignment was actually part of the monday-assignment and therfore both are in the same folder. Tuesday was also part of the same assignment as monday.
 
