@@ -78,7 +78,7 @@ function submitMeTable(evt) {
     evt.preventDefault();
     let filteredCarArray = cars.filter(function(e) {
         return e.Price < document.getElementById("lPrice").value;
-    })
+    });
     upDateTable(filteredCarArray);
     console.log(filteredCarArray);
 }

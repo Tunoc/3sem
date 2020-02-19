@@ -6,8 +6,8 @@ function add(n1, n2) {
 
 //Function Expression
 var sub = function (n1, n2) {
-    return n1 - n2
-}
+    return n1 - n2;
+};
 
 //Callback example
 var cb = function (n1, n2, callback) {
@@ -24,11 +24,11 @@ var cb = function (n1, n2, callback) {
 
 //2) Call the functions above as sketched below. It’s not about doing it as fast as you can, but about understanding what's happening, so make sure you understand each line.
 console.log("\n2)");
-console.log(add(1, 2))
+console.log(add(1, 2));
 //-Q What will this print?
 //-A 3
 
-console.log(add)
+console.log(add);
 //-Q What will it print and what does add represent?
 //-A It will print [Function: add] It will print the entire function.
 
@@ -173,7 +173,7 @@ console.log(cars.filter(function(car){
 
 console.log("\nAl Volvo's");
 console.log(cars.filter(function(car){
-    if(car.make == "Volvo"){
+    if(car.make === "Volvo"){
         return car;
     }
 }));
