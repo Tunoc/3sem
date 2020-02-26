@@ -1,0 +1,6 @@
+Not done with the 5 part
+
+Bottom of customer linking back to adresses - Test if it works (Probably need to edit in Tester.class)
+
+5) Many To Many (bidirectional)
+https://docs.google.com/document/d/18gU-VJALIQTQeoMx-jmhVq9fb_G7PN4HC_qr7nArkhg/edit
