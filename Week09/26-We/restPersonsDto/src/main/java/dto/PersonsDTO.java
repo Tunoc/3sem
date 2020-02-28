@@ -17,4 +17,10 @@ public class PersonsDTO {
             PersonList.add(new PersonDTO(p));
         });
     }
+    
+//Getters & Setters
+
+    public List<PersonDTO> getPersonList() {
+        return PersonList;
+    }
 }
