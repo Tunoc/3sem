@@ -1,6 +1,7 @@
 package rest;
 
 import dto.PersonDTO;
+import entities.Address;
 import entities.Person;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -66,8 +67,9 @@ public class PersonResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        p1 = new Person("Karl", "Aage", "86754253");
-        p2 = new Person("Alfred", "Johansen", "20378416");
+        Address a1 = new Address("abc", 1, "def");
+        p1 = new Person("Karl", "Aage", "86754253", a1);
+        p2 = new Person("Alfred", "Johansen", "20378416", a1);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Person.deleteAllRows").executeUpdate();
@@ -92,13 +94,14 @@ public class PersonResourceTest {
     @Test
     public void testAddPerson() throws Exception {
         given().contentType(ContentType.JSON)
-                .body(new PersonDTO("TestFirstName", "TestLastName", "TestPhone"))
+                .body(new PersonDTO("TestFirstName", "TestLastName", "TestPhone", "TestStreet", "TestCity", 852))
                 .when()
                 .post("person/add")
                 .then()
                 .body("firstName", equalTo("TestFirstName"))
                 .body("lastName", equalTo("TestLastName"))
-                .body("id", notNullValue());
+                .body("id", notNullValue())
+                .body("street", equalTo("TestStreet"));
     }
 
     @Test
@@ -150,27 +153,22 @@ public class PersonResourceTest {
     public void testExceptionGetID() throws Exception {
         given().contentType(ContentType.JSON)
                 .when()
-                .get("/person/id/{id}", 1)
-                //Using 1 since the db continues to auto increment therfore we won't hit 1 as an id.
+                .get("/person/id/{id}", 0)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.NOT_FOUND_404.getStatusCode())
                 .body("message", equalTo("No person with provided id found"));
     }
     
-    /*
-    Somehow this test dosn't go green.. We are told by the error message that the actual value is null.
-    However the test up above this one goes green.. And they are basically a copy and paste.. But with the difference of being a get request or a delete.
     @Test
     public void testExceptionDeleteID() throws Exception {
         given().contentType(ContentType.JSON)
                 .when()
-                .delete("/person/delete/{id}", 1)
-                //Using 1 since the db continues to auto increment therfore we won't hit 1 as an id.
+                .delete("/person/delete/{id}", 0)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.NOT_FOUND_404.getStatusCode())
-                .body("message", equalTo("Person does not exist"));
+                .body("msg", equalTo("Person does not exist"));
     }
-*/
+
 }

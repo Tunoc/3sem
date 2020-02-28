@@ -2,6 +2,7 @@ package facades;
 
 import dto.PersonDTO;
 import dto.PersonsDTO;
+import entities.Address;
 import entities.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,8 +19,6 @@ import utils.EMF_Creator;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
-//Uncomment the line below, to temporarily disable this test
-//@Disabled
 public class IPersonFacadeImplTest {
 
     private static EntityManagerFactory emf;
@@ -31,8 +30,8 @@ public class IPersonFacadeImplTest {
 
     @BeforeAll
     public static void setUpClass() {
-       emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = IPersonFacadeImpl.getPersonFacade(emf);
+        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
+        facade = IPersonFacadeImpl.getPersonFacade(emf);
     }
 
     @AfterAll
@@ -43,8 +42,9 @@ public class IPersonFacadeImplTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        p1 = new Person("Karl", "Aage", "86754253");
-        p2 = new Person("Alfred", "Johansen", "20378416");
+        Address a1 = new Address("abc", 1, "def");
+        p1 = new Person("Karl", "Aage", "86754253", a1);
+        p2 = new Person("Alfred", "Johansen", "20378416", a1);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Person.deleteAllRows").executeUpdate();
@@ -60,40 +60,44 @@ public class IPersonFacadeImplTest {
     public void tearDown() {
         //..
     }
-    
+
     @Test
     public void testAddPerson() {
         System.out.println("createPerson");
         String fname = "TestFirstName";
         String lname = "TestLastName";
         String phone = "852";
-        PersonDTO personDTO = facade.addPerson(fname, lname, phone);
-        assertEquals(new PersonDTO(fname, lname, phone).toString(), personDTO.toString());
-        }
-    
+        String street = "TestStreet?";
+        String city = "TestCity";
+        Integer zip = 862;
+        PersonDTO personDTO = facade.addPerson(fname, lname, phone, street, city, zip);
+        PersonDTO expected = new PersonDTO(fname, lname, phone, street, city, zip);
+        assertEquals(expected, personDTO);
+    }
+
     @Test
-    public void testDeletePerson(){
+    public void testDeletePerson() {
         System.out.println("deletePerson");
         PersonDTO personDTO = facade.deletePerson(p1.getId());
-        assertEquals(new PersonDTO(p1).toString(), personDTO.toString());
+        assertEquals(new PersonDTO(p1), personDTO);
     }
-    
+
     @Test
-    public void testGetPerson(){
+    public void testGetPerson() {
         System.out.println("getPerson");
         PersonDTO personDTO = facade.getPerson(p1.getId());
-        assertEquals(new PersonDTO(p1).toString(), personDTO.toString());
+        assertEquals(new PersonDTO(p1), personDTO);
     }
-    
+
     @Test
-    public void testGetAllPersons(){
+    public void testGetAllPersons() {
         System.out.println("getAllPersons");
         PersonsDTO persons = facade.getAllPersons();
         assertThat(persons.getPersonList(), everyItem(hasProperty("firstName")));
     }
-    
+
     @Test
-    public void testEditPerson(){
+    public void testEditPerson() {
         System.out.println("editPerson");
         p1.setLastName("LastNameEdit");
         PersonDTO personDTO = facade.editPerson(new PersonDTO(p1));

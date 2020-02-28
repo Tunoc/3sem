@@ -41,8 +41,10 @@ public class PersonResource {
         PersonDTO personConverted = GSON.fromJson(stringPerson, PersonDTO.class);
         PersonDTO personDTO;
         try{
-            personDTO = FACADE.addPerson(personConverted.getFirstName(), personConverted.getLastName(), personConverted.getPhone());
+            personDTO = FACADE.addPerson(personConverted.getFirstName(), personConverted.getLastName(), personConverted.getPhone(),
+                    personConverted.getStreet(), personConverted.getCity(), personConverted.getZip());
         } catch (Exception e) {
+            System.out.println("Exception:\n\n\n" + e);
             return Response.status(404).entity("{\"code\":404,\"msg\":\"Person add"
                     + " failed\"}").build();
         }
@@ -57,6 +59,7 @@ public class PersonResource {
         try {
             personDTO = FACADE.deletePerson(id);
         } catch (Exception e) {
+            System.out.println("Exception:\n\n\n" + e);
             return Response.status(404).entity("{\"code\":404,\"msg\":\"Person does not exist\"}").build();
         }
         return Response.ok(GSON.toJson(personDTO)).build();

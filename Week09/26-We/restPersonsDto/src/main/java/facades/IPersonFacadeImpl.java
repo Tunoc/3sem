@@ -2,27 +2,28 @@ package facades;
 
 import dto.PersonDTO;
 import dto.PersonsDTO;
+import entities.Address;
 import entities.Person;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
+import javax.persistence.TypedQuery;
 
 /**
  *
- * @author rando 
+ * @author rando
  */
-public class IPersonFacadeImpl implements IPersonFacade{
+public class IPersonFacadeImpl implements IPersonFacade {
 
     private static IPersonFacadeImpl instance;
     private static EntityManagerFactory emf;
-    
+
     //Private Constructor to ensure Singleton
-    private IPersonFacadeImpl() {}
-    
-    
+    private IPersonFacadeImpl() {
+    }
+
     /**
-     * 
+     *
      * @param _emf
      * @return an instance of this facade class.
      */
@@ -40,9 +41,14 @@ public class IPersonFacadeImpl implements IPersonFacade{
 
 //Override interface
     @Override
-    public PersonDTO addPerson(String fName, String lName, String phone) {
-        Person p = new Person(fName, lName, phone);
+    public PersonDTO addPerson(String fName, String lName, String phone, String street, String city, Integer zip) {
         EntityManager em = getEntityManager();
+        Address adr = new Address(street, zip, city);
+        Address check = checkAddress(adr, em);
+        if (check != null) {
+            adr = check;
+        }
+        Person p = new Person(fName, lName, phone, adr);
         try {
             em.getTransaction().begin();
             em.persist(p);
@@ -53,10 +59,24 @@ public class IPersonFacadeImpl implements IPersonFacade{
         }
     }
 
+    private Address checkAddress(Address adr, EntityManager em) {
+        try {
+            TypedQuery<Address> q = em.createQuery("SELECT a FROM Address a WHERE a.city = :city AND a.street = :street AND a.zip = :zip", Address.class);
+            q.setParameter("street", adr.getStreet());
+            q.setParameter("city", adr.getCity());
+            q.setParameter("zip", adr.getZip());
+            Address result = q.getSingleResult();
+            return result;
+        } catch (Exception e) {
+            //System.out.println(e);
+            return null;
+        }
+    }
+
     @Override
     public PersonDTO deletePerson(int id) {
         EntityManager em = getEntityManager();
-        try{
+        try {
             Person p = em.find(Person.class, id);
             em.getTransaction().begin();
             em.remove(p);
@@ -72,10 +92,10 @@ public class IPersonFacadeImpl implements IPersonFacade{
         EntityManager em = getEntityManager();
         try {
             Person p = em.find(Person.class, id);
-            return new PersonDTO(p);   
+            return new PersonDTO(p);
         } finally {
             em.close();
-        }        
+        }
     }
 
     @Override
@@ -88,16 +108,23 @@ public class IPersonFacadeImpl implements IPersonFacade{
     @Override
     public PersonDTO editPerson(PersonDTO p) {
         EntityManager em = getEntityManager();
-        try{
+        try {
             Person person = em.find(Person.class, p.getId());
+            Address address = new Address(p.getStreet(), p.getZip(), p.getCity());
+            Address check = checkAddress(address, em);
+            if (check != null) {
+                address = check;
+            }
             em.getTransaction().begin();
             person.setFirstName(p.getFirstName());
             person.setLastName(p.getLastName());
             person.setPhone(p.getPhone());
             person.setLastEdited(new Date());
+            person.setAddress(address);
+            
             em.getTransaction().commit();
             return new PersonDTO(person);
-        }   finally {
+        } finally {
             em.close();
         }
     }

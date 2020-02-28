@@ -8,7 +8,7 @@ import dto.PersonsDTO;
  * @author rando
  */
 public interface IPersonFacade {
-  public PersonDTO addPerson(String fName, String lName, String phone);  
+  public PersonDTO addPerson(String fName, String lName, String phone, String street, String city, Integer zip);  
   public PersonDTO deletePerson(int id);  
   public PersonDTO getPerson(int id);  
   public PersonsDTO getAllPersons();  
