@@ -57,8 +57,7 @@ public class PersonResource {
         try {
             personDTO = FACADE.deletePerson(id);
         } catch (Exception e) {
-            return Response.status(404).entity("{\"code\":404,\"msg\":\"Person from id"
-                    + " not found\"}").build();
+            return Response.status(404).entity("{\"code\":404,\"msg\":\"Person does not exist\"}").build();
         }
         return Response.ok(GSON.toJson(personDTO)).build();
     }
@@ -71,8 +70,7 @@ public class PersonResource {
         try {
             personDTO = FACADE.getPerson(id);
         } catch (Exception e) {
-            return Response.status(404).entity("{\"code\":404,\"msg\":\"Person from id"
-                    + " not found\"}").build();
+            return Response.status(404).entity("{\"code\": 404, \"message\": \"No person with provided id found\"}").build();
         }
         return Response.ok(GSON.toJson(personDTO)).build();
     }
@@ -102,8 +100,7 @@ public class PersonResource {
         try{
             personDTO = FACADE.editPerson(personConverted);
         } catch (Exception e) {
-            return Response.status(404).entity("{\"code\":404,\"msg\":\"Edit Person"
-                    + " not found\"}").build();
+            return Response.status(404).entity("{\"code\":404,\"msg\":\"Edit Person not found in db\"}").build();
         }
         return Response.ok(GSON.toJson(personDTO)).build();
     }

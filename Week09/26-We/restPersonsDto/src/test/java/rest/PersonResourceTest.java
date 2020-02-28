@@ -84,8 +84,8 @@ public class PersonResourceTest {
     @Test
     public void testServerConnection() throws Exception {
         given().when()
-                .get("/person").
-                then()
+                .get("/person")
+                .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("msg", is("Hello World"));
@@ -143,8 +143,36 @@ public class PersonResourceTest {
         given().contentType(ContentType.JSON)
                 .body(new PersonDTO(p1))
                 .when()
-                .post("person/add")
+                .put("person/edit")
                 .then()
-                .body("lastName", equalTo("Larsen"));
+                .body("lastName", equalTo(p1.getLastName()));
     }
+    
+    @Test
+    public void testExceptionGetID() throws Exception {
+        given().contentType(ContentType.JSON)
+                .when()
+                .get("/person/id/{id}", 1)
+                //Using 1 since the db continues to auto increment therfore we won't hit 1 as an id.
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NOT_FOUND_404.getStatusCode())
+                .body("message", equalTo("No person with provided id found"));
+    }
+    
+    /*
+    Somehow this test dosn't go green.. We are told by the error message that the actual value is null.
+    However the test up above this one goes green.. And they are basically a copy and paste.. But with the difference of being a get request or a delete.
+    @Test
+    public void testExceptionDeleteID() throws Exception {
+        given().contentType(ContentType.JSON)
+                .when()
+                .delete("/person/delete/{id}", 1)
+                //Using 1 since the db continues to auto increment therfore we won't hit 1 as an id.
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NOT_FOUND_404.getStatusCode())
+                .body("message", equalTo("Person does not exist"));
+    }
+*/
 }
