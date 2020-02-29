@@ -1,0 +1,6 @@
+Note to self.
+
+Der er ikke lavet en custom exception på Onsdags opgaven da' jeg fra start af havde lavet responses med try catches.
+Så jeg ved godt at jeg har den "ulempe" af at mine exceptions ikke bliver logget, som den som lærerne havde givet os som vi burde have brugt.
+Men jeg har dog alligevel gjort brug af "Generic Exception mapperen" som vi også blev opfordret til.
+Men jeg får stadigvæk de samme fejlbeskeder som alle andre, på grund af mine try catches inde fra resurcen.
