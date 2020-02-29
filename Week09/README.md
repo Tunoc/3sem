@@ -21,7 +21,7 @@ in the resource folder. The teacher said it was okay that i used this method, be
 Even though this means that i'm not logging the exception that is thrown.
 With that being said i did implement the "Generic Exception Mapper" for everything else that would "break" and throw an exception.  
 **Be aware** that i have a seperate branch for the Red part of the last thing of this assignment with the Addresses.
-Link is here; "*https://github.com/Tunoc/3sem/tree/Rest_Persons_DTO/Week09/26-We/restPersonsDto/src/main/java*"
+Link is here; "*https://github.com/Tunoc/3sem/tree/Rest_Persons_DTO/Week09/26-We/*"
 ***
 
 ### Friday:
