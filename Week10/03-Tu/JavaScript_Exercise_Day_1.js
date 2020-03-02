@@ -8,14 +8,14 @@ let names = ["Lars", "Jan", "Peter", "Bo", "Frederik", "ect"];
 console.log("\nOriginal Array");
 console.log(names);
 
-let namesWithA = names.filter(function(namesWithA) {
-    if (namesWithA.includes("a")) {
-        return namesWithA;
-    }
-});
+/*
+let namesWithA = names.filter(function(name) {
+    return name.includes("a");
+});*/
+//The line below is the same as the block above.
+let namesWithA = names.filter(name => name.includes("a"));
 console.log("\nNames only with \"A\"");
 console.log(namesWithA);
-
 
 /*
 b) Using the map method:
@@ -38,4 +38,21 @@ and a callback as the second and returns a new (filtered) array according to the
 (this method should provide the same behaviour as the original filter method).
 Test the method with the same array and callback as in the example with the original filter method.
 */
-function myFilter(names, callback);
+
+function myFilter(array, callback) {
+    return callback(array);
+}
+
+function filterNameWithA(name) {
+    return name.includes("a");
+}
+
+console.log(myFilter(names, filterNameWithA))
+
+
+/*
+console.log(functionFilteredNames);
+
+let functionFilteredNames = names.filter(function(namesWithA) {
+    return namesWithA.includes("a");
+});*/
