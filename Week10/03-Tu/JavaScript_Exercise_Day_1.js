@@ -194,6 +194,8 @@ console.log(names.myMap(reverseAllNamesInArray));
 
 
 
+
+
 //4) Getting really comfortable with filter and map
 /*
     a) Given this array: var numbers = [1, 3, 5, 10, 11];
@@ -202,14 +204,68 @@ console.log(names.myMap(reverseAllNamesInArray));
     Hints: The map() callback can take me additional arguments, see here
 */
 /* <-Notes to assignment 4-a)
-    The; "this", that we are reffering to in the map down below is a reference to the array(numbers).
-    Using "this" we could call the map with a different array that numbers and it would still work.
+    We use 3 of 4 paramenters from the map function.
+    number = Current number from numbers array being parsed.
+    index = current index form numbers array.
+    array = the array that is currently being processed by the map function.
+
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+    if statement that returns either the number if we reach the last index.
+    Or returns the cuttent index + the next.
 */
+
 let numbers = [1, 3, 5, 10, 11];
 
-let mappedNumbers = numbers.map((number, index) => {
-    return number + this[index + 1];
+let mappedNumbers = numbers.map((number, index, array) => {
+    return (array.length - 1 === index) ? number : number + array[index + 1]
 });
 
 console.log("\n4-a)");
 console.log(mappedNumbers);
+
+/*
+    b) Use map() to create the <a>’s for a navigation set and eventually a string like below (use join() to get the string of <a>’s):
+    <nav>
+        <a href=””>Lars</a>
+        <a href=””>Peter</a>
+        <a href=””>Jan</a>
+        <a href=””>Bo</a>
+    </nav>
+*/
+let namesArray = ["Lars", "Peter", "Jan", "Bo"];
+
+let namesMap4b = namesArray.map((name) => {
+    return "<a href=\"\">" + name + "</a>";
+}).join("");
+
+console.log("<nav>" + namesMap4b + "</nav>");
+
+/*
+    c) Use map()+(join + ..) to create a string, representing a two column table, for the data given below:
+    var names = [{name:"Lars",phone:"1234567"}, {name: "Peter",phone: "675843"}, {name: "Jan", phone: "98547"},{name: "Bo", phone: "79345"}];
+*/
+let names4c = [
+    { name: "Lars", phone: "1234567" },
+    { name: "Peter", phone: "675843" },
+    { name: "Jan", phone: "98547" },
+    { name: "Bo", phone: "79345" }
+];
+
+function createTableFromArray(array) {
+    let stringHead = "<tr><th>Name</th><th>Phone</th></tr>";
+    let stringData = "";
+    array.forEach(element => {
+        let temp = "<tr>";
+        temp += Object.values(element).map(function(a) {
+            return "<td>" + a + "</td>";
+        }).join("") + "</tr>";
+        stringData += temp;
+    });
+    return "<table border='1'>" + stringHead + stringData;
+} //When we define the table border we are capable of creating a table in a HTML body.
+
+console.log(createTableFromArray(names4c));
+
+
+//https://github.com/Tunoc/3sem/blob/master/Week07/13%20-%20Th/DomManipulationAndEvents/src/main/webapp/mapListFilters.js
+//Bottom - dom manipulation.
