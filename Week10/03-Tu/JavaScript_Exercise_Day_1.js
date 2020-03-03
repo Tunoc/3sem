@@ -113,10 +113,7 @@ function myMap(array, callback) {
 }
 
 function reverseAllNamesInArray(name) {
-    let splitString = name.split("");
-    let reverseArray = splitString.reverse();
-    let JoinArray = reverseArray.join("");
-    return JoinArray;
+    return name.split("").reverse().join("");
 }
 
 console.log("\nReversed names <- MyMap");
@@ -235,10 +232,11 @@ console.log(mappedNumbers);
 let namesArray = ["Lars", "Peter", "Jan", "Bo"];
 
 let namesMap4b = namesArray.map((name) => {
-    return "<a href=\"\">" + name + "</a>";
+    return "<a href=\"\">" + name + "</a>\n"; //Backsalsh n for better looks in console
 }).join("");
 
-console.log("<nav>" + namesMap4b + "</nav>");
+console.log("\n4-b)");
+console.log("<nav>\n" + namesMap4b + "</nav>");
 
 /*
     c) Use map()+(join + ..) to create a string, representing a two column table, for the data given below:
@@ -252,20 +250,145 @@ let names4c = [
 ];
 
 function createTableFromArray(array) {
-    let stringHead = "<tr><th>Name</th><th>Phone</th></tr>";
+    let stringHead = "<tr><th>Name</th><th>Phone</th></tr>\n";
     let stringData = "";
     array.forEach(element => {
         let temp = "<tr>";
         temp += Object.values(element).map(function(a) {
             return "<td>" + a + "</td>";
-        }).join("") + "</tr>";
+        }).join("") + "</tr>\n";
         stringData += temp;
     });
-    return "<table border='1'>" + stringHead + stringData;
+    return "<table border='1'>\n" + stringHead + stringData + "</table>";
 } //When we define the table border we are capable of creating a table in a HTML body.
 
+console.log("\n4-c)");
 console.log(createTableFromArray(names4c));
 
 
-//https://github.com/Tunoc/3sem/blob/master/Week07/13%20-%20Th/DomManipulationAndEvents/src/main/webapp/mapListFilters.js
-//Bottom - dom manipulation.
+/*
+    d) Create a single html-file and test the two examples given above.
+    Hint: add a single div with an id=names, and use DOM-manipulation (document.getElementById.innerHTML = theString) to add the nav or table.
+*/
+/* <-Notes to assignment 4-d)
+    Look at the; "4_dExercise.html" file.
+*/
+
+function ex4B() {
+    document.getElementById("names").innerHTML = "<nav>" + namesMap4b + "</nav>";
+}
+
+function ex4C() {
+    document.getElementById("names").innerHTML = createTableFromArray(names4c);
+}
+
+console.log("\n4-d)");
+console.log("The HTML page look at line 277 to see where to go.");
+
+/*
+    e) Add a button with a click-handler and use the filter method to find only names containing the letter ‘a’. 
+    Update the table to represent the filtered data.
+*/
+/* <-Notes to assignment 4-e)
+    We reuse the filter function from earlier and then reuse our table creation function.
+    However we need to make a new callback.
+*/
+
+//callbackFunction for the filter from earlier.
+function filterNamesWith4e(nameObjectWithNameAndPhone) {
+    return nameObjectWithNameAndPhone.name.includes("a" || "A");
+}
+
+function ex4E() {
+    let filteredArrayWithA = names4c.myFilter(filterNamesWith4e)
+    document.getElementById("names").innerHTML = createTableFromArray(filteredArrayWithA);
+}
+
+console.log("\n4-e)");
+console.log(createTableFromArray(names4c.myFilter(filterNamesWith4e)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//5. reduce
+/*
+    In most literature (definitely not only JavaScript) you will see map and filter explained together with the reduce function 
+    (try this Google search: https://www.google.dk/search?q=map+filter+reduce&oq=map+filter+reduce&aqs=chrome..69i57j0l5.4472j0j7&sourceid=chrome&ie=UTF-8 ), 
+    so obviously, this is a method we need to learn.
+    Reduce is used to reduce an array into a single item (a number, string, object, etc). 
+    This is a very common problem in all languages, for specific problems, so common, that the Array actually has a specific “reduce” method called join, 
+    which can reduce an array into a string separated by whatever we choose.
+    var all= ["Lars", "Peter", "Jan", "Bo"];
+*/
+/*
+    a) Use join to create a single string from all, with names: comma-, space. and  # - separated.
+*/
+let all = ["Lars", "Peter", "Jan", "Bo"];
+console.log("\n5-a)");
+console.log(all.join(", #"));
+
+/*
+    b) Given this array: var numbers = [2, 3, 67, 33];
+    Create a reducer callback that, with reduce(..),  will return the sum (105) of all values in numbers
+*/
+let numbers5b = [2, 3, 67, 33];
+let numbers5bsum = numbers5b.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+//I set the initial value above to 0. If we call a reduce with an empty array without setting the 0 the system would throw a TypeError.
+console.log("\n5-b)");
+console.log(numbers5bsum);
+
+/*
+    c) Given this array:
+    var members = [
+    {name : "Peter", age: 18},
+    {name : "Jan", age: 35},
+    {name : "Janne", age: 25},
+    {name : "Martin", age: 22}]
+
+    Create a reducer callback that, using the Array’s  reduce() method,  will return the average age of all members (25 for the provided array).
+    Hint: The reduce callback takes two additional arguments as sketched below:
+    var reducer = function(accumulator, member,index,arr ){
+    Index is the current index for which the value (member) are passed in, and arr is the array.
+    Use this to return different values from your reduce-function,  according to whether you have reached the last element or not.
+*/
+let members5c = [
+    { name: "Peter", age: 18 },
+    { name: "Jan", age: 35 },
+    { name: "Janne", age: 25 },
+    { name: "Martin", age: 22 }
+];
+
+//let reducer = members5c.reduce((accumulator, currentValue, index, arr) => accumulator + currentValue, 0);
+//console.log(reducer);
+
+function reducer(array, callback) {
+    let reducedNames = [];
+    array.forEach(element => {
+        if (callback(element)) {
+            reducedNames.push(element);
+        }
+    });
+    return reducedNames;
+};
+
+function reducerAvg(accumulator, currentValue, index, arr) {
+
+};
+
+
+function filterNamesWith(name) {
+    return name.includes("a" || "A");
+}
