@@ -232,7 +232,7 @@ console.log(mappedNumbers);
 let namesArray = ["Lars", "Peter", "Jan", "Bo"];
 
 let namesMap4b = namesArray.map((name) => {
-    return "<a href=\"\">" + name + "</a>\n"; //Backsalsh n for better looks in console
+    return "<a href=\"\">" + name + "</a><br>\n"; //Backsalsh n for better looks in console - br for new line in html.
 }).join("");
 
 console.log("\n4-b)");
