@@ -83,11 +83,11 @@ function myFilter(array, callback) {
 }
 
 function filterNamesWith(name) {
-    return name.includes("a" || "A");
+    return name.includes("a") || name.includes("A");
 }
 
 function filterNamesWithout(name) {
-    return !name.includes("a" || "A");
+    return !name.includes("a") || name.includes("A");
 }
 
 console.log("\nNames only with \"A\" <- MyFilter & More");
@@ -193,6 +193,9 @@ console.log(names.myMap(reverseAllNamesInArray));
 
 
 
+
+
+
 //4) Getting really comfortable with filter and map
 /*
     a) Given this array: var numbers = [1, 3, 5, 10, 11];
@@ -246,7 +249,8 @@ let names4c = [
     { name: "Lars", phone: "1234567" },
     { name: "Peter", phone: "675843" },
     { name: "Jan", phone: "98547" },
-    { name: "Bo", phone: "79345" }
+    { name: "Bo", phone: "79345" },
+    { name: "And", phone: "79345" }
 ];
 
 function createTableFromArray(array) {
@@ -296,7 +300,7 @@ console.log("The HTML page look at line 277 to see where to go.");
 
 //callbackFunction for the filter from earlier.
 function filterNamesWith4e(nameObjectWithNameAndPhone) {
-    return nameObjectWithNameAndPhone.name.includes("a" || "A");
+    return nameObjectWithNameAndPhone.name.includes("a") || nameObjectWithNameAndPhone.name.includes("A");
 }
 
 function ex4E() {
@@ -306,6 +310,8 @@ function ex4E() {
 
 console.log("\n4-e)");
 console.log(createTableFromArray(names4c.myFilter(filterNamesWith4e)));
+
+
 
 
 
@@ -371,24 +377,116 @@ let members5c = [
     { name: "Martin", age: 22 }
 ];
 
-//let reducer = members5c.reduce((accumulator, currentValue, index, arr) => accumulator + currentValue, 0);
-//console.log(reducer);
+let reducer = members5c.reduce((accumulator, member, UnUsEdInDeX, arr) => accumulator + member.age / arr.length, 0);
 
-function reducer(array, callback) {
-    let reducedNames = [];
-    array.forEach(element => {
-        if (callback(element)) {
-            reducedNames.push(element);
-        }
-    });
-    return reducedNames;
-};
+console.log("\n5-c)");
+console.log(reducer);
 
-function reducerAvg(accumulator, currentValue, index, arr) {
+/*
+    d) Imagine you were to create a system that could count votes for the presidential election in USA.
+    Given this array of votes: 
+    var votes = [ "Clinton","Trump","Clinton","Clinton","Trump","Trump","Trump","None"];
+    Create a reduce function that will return a single object like {Clinton: 3, Trump: 4, None: 1 }
+    Hints: You can check whether a property exists in a Javascript object, and add new properties as sketched below:
+    var a = {}
+    if (a["clinton"])
+    console.log("I Will Not Print")
+    a["clinton"] = 1;
+    console.log("You will see me")
+    console.log("Value of clinton "+ a["clinton"]);
+*/
 
-};
+let votes = ["Clinton", "Trump", "Clinton", "Clinton", "Trump", "Trump", "Trump", "None"];
+
+let presSelect = votes.reduce(function(accumulator, candidate) {
+    if (accumulator.hasOwnProperty(candidate)) {
+        accumulator[candidate] += 1; //If we allready have a candidate in the dictionary then increase count.
+    } else {
+        accumulator[candidate] = 1; //If we don't have a candidate in the dictionary then create them and count.
+    }
+    return accumulator;
+}, {}); //Set initial value to empty dictionary
+
+console.log("\n5-d)");
+console.log(presSelect);
 
 
-function filterNamesWith(name) {
-    return name.includes("a" || "A");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//6 Hoisting
+/*
+    Team up with another member of the class. Read about hoisting and implement at least two examples (individually) to illustrate that:
+    Function declarations are completely hoisted
+    var declarations are also hoisted, but not assignments made with them
+*/
+function hoisting_func() {
+    console.log(hoisting_let);
+    console.log(hoisting_var);
 }
+//hoisting_func(); //Cannot access 'hoisting_let' before initialization
+//console.log(hoisting_let); //This is commented since we can't use a let if it hasn't been initialized yet.
+let hoisting_let = "hoisting-Let";
+console.log(hoisting_let);
+
+console.log(hoisting_var); //However we can use a var if it hasn't been initialized yet, it will just be undefined.
+var hoisting_var = "hoisting_var";
+console.log(hoisting_var);
+hoisting_func();
+
+
+/*
+    Explain to each other (as if it was the exam):
+    Q - What hoisting is
+    A - Hoisting is JavaScripts default behavior of moving declarations to the top of their respective scopes, druing compilation.
+    But if it's a declaration the assignment part won't be moved.
+
+    Q - What is the difference between the keyword var and the ES6 keyword let?
+    A - The big difference is where the two are hoisted to.
+    let will be hoisted in the respective block scope. 
+    ^ in a function that would be right after the nearest starting curly bracket.
+
+    var will be hoisted in the function scope or the global scope 
+    ^ in a function that would be right after the first curly bracket of the function.
+*/
+
+
+
+
+
+//7 this in JavaScript
+/*
+    Team up with another member of the class. Read about this in JavaScript and implement at least three examples (individually) 
+    to illustrate how this in JavaScript differs from what we know from Java. One of the examples should include an example of 
+    explicit setting this using either call(), apply() or bind().
+    Explain to each other, using the examples (as if it was the exam):
+    How this in JavaScript differ from this in Java
+    The purpose of the methods call(), apply() and bind()
+*/
+
+
+
+
+
+//8 Reusable Modules with Closures
+/*
+    1) 
+    Implement and test the Closure Counter Example from w3schools:
+    https://www.w3schools.com/js/js_function_closures.asp
+    2)
+    Implement a reusable function using the Module pattern that should encapsulate information about a person (name, and age) and returns an object with the following methods:
+    setAge
+    setName
+    getInfo (should return a string like Peter, 45)
+*/
