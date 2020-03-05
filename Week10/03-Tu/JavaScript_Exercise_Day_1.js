@@ -16,7 +16,8 @@ console.log(names);
 /* <-Notes to assignment 1-a)
     The line below is the same as the block above.
 */
-let namesWithA = names.filter(name => name.includes("a"));
+let namesWithA = names.filter(name =>
+    name.includes("a"));
 console.log("\nNames only with \"A\"");
 console.log(namesWithA);
 
@@ -33,12 +34,6 @@ let reverseArray = names.map(function(str) {
 });
 console.log("\nReversed names");
 console.log(reverseArray);
-
-
-
-
-
-
 
 
 
@@ -216,9 +211,8 @@ console.log(names.myMap(reverseAllNamesInArray));
 
 let numbers = [1, 3, 5, 10, 11];
 
-let mappedNumbers = numbers.map((number, index, array) => {
-    return (array.length - 1 === index) ? number : number + array[index + 1]
-});
+let mappedNumbers = numbers.map((number, index, array) =>
+    (array.length - 1 === index) ? number : number + array[index + 1]);
 
 console.log("\n4-a)");
 console.log(mappedNumbers);
@@ -302,6 +296,8 @@ console.log("The HTML page look at line 277 to see where to go.");
 function filterNamesWith4e(nameObjectWithNameAndPhone) {
     return nameObjectWithNameAndPhone.name.includes("a") || nameObjectWithNameAndPhone.name.includes("A");
 }
+const ex4Btn = document.getElementById("ex4EBtn");
+ex4Btn.addEventListener("click", ex4E)
 
 function ex4E() {
     let filteredArrayWithA = names4c.myFilter(filterNamesWith4e)
@@ -344,14 +340,15 @@ console.log(createTableFromArray(names4c.myFilter(filterNamesWith4e)));
 */
 let all = ["Lars", "Peter", "Jan", "Bo"];
 console.log("\n5-a)");
-console.log(all.join(", #"));
+console.log("#" + all.join(", #"));
 
 /*
     b) Given this array: var numbers = [2, 3, 67, 33];
     Create a reducer callback that, with reduce(..),  will return the sum (105) of all values in numbers
 */
 let numbers5b = [2, 3, 67, 33];
-let numbers5bsum = numbers5b.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+let numbers5bsum = numbers5b.reduce((previousValue, currentValue) =>
+    previousValue + currentValue, 0);
 //I set the initial value above to 0. If we call a reduce with an empty array without setting the 0 the system would throw a TypeError.
 console.log("\n5-b)");
 console.log(numbers5bsum);
@@ -377,7 +374,8 @@ let members5c = [
     { name: "Martin", age: 22 }
 ];
 
-let reducer = members5c.reduce((accumulator, member, UnUsEdInDeX, arr) => accumulator + member.age / arr.length, 0);
+let reducer = members5c.reduce((accumulator, member, UnUsEdInDeX, arr) =>
+    accumulator + member.age / arr.length, 0);
 
 console.log("\n5-c)");
 console.log(reducer);
@@ -399,7 +397,7 @@ console.log(reducer);
 let votes = ["Clinton", "Trump", "Clinton", "Clinton", "Trump", "Trump", "Trump", "None"];
 
 let presSelect = votes.reduce(function(accumulator, candidate) {
-    if (accumulator.hasOwnProperty(candidate)) {
+    if (accumulator[candidate]) {
         accumulator[candidate] += 1; //If we allready have a candidate in the dictionary then increase count.
     } else {
         accumulator[candidate] = 1; //If we don't have a candidate in the dictionary then create them and count.
@@ -409,7 +407,7 @@ let presSelect = votes.reduce(function(accumulator, candidate) {
 
 console.log("\n5-d)");
 console.log(presSelect);
-
+console.log("\n");
 
 
 
@@ -431,6 +429,8 @@ console.log(presSelect);
     Function declarations are completely hoisted
     var declarations are also hoisted, but not assignments made with them
 */
+console.log("\n6)");
+
 function hoisting_func() {
     console.log(hoisting_let);
     console.log(hoisting_var);
@@ -444,8 +444,6 @@ console.log(hoisting_var); //However we can use a var if it hasn't been initiali
 var hoisting_var = "hoisting_var";
 console.log(hoisting_var);
 hoisting_func();
-
-
 /*
     Explain to each other (as if it was the exam):
     Q - What hoisting is
