@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css'
-
 //JS Event handling, HTML5 and inline SVG 
 /*
     Needs to be able to highlight the selected contry.
@@ -9,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 var prev;
 
 function fetchFunction(fetchUrl, callback) {
-    event.preventDefault();
     fetch(fetchUrl)
         .then(function(response) {
             return response.json();
@@ -29,31 +26,56 @@ eventBubbling.addEventListener("click", (element) => {
         element.target.style = "fill: red";
         prev = element;
     }
-    element.target.id == "svg2" ? notOnTheMap(element) : onLand(element);
+    element.target.id == "svg2" ? notOnTheMap() : onLand(element);
 });
 
 function onLand(element) {
     if (element.target.id.length > 2) {
         fetchFunction("http://restcountries.eu/rest/v1/alpha?codes=" + element.target.parentNode.id, pasteItAll);
-
     } else {
         fetchFunction("http://restcountries.eu/rest/v1/alpha?codes=" + element.target.id, pasteItAll);
 
     }
 }
 
-function notOnTheMap(element) {
+function notOnTheMap() {
+    removeElementsIfExist();
+    generateHTMLelements();
     document.getElementById("ifNotALandHere").innerHTML = "Not a land";
-    document.getElementById("pasteCountry").innerHTML = "";
-    document.getElementById("pastePopulation").innerHTML = "";
-    document.getElementById("pasteArea").innerHTML = "";
-    document.getElementById("pasteBorders").innerHTML = "";
 }
 
+
+
+var printArray = ["ifNotALandHere", "pasteCountry", "pastePopulation", "pasteArea", "pasteBorders"];
+
 function pasteItAll(data) {
-    document.getElementById("ifNotALandHere").innerHTML = "";
+    removeElementsIfExist();
+    generateHTMLelements();
+    populateElements(data);
+}
+
+function generateHTMLelements() {
+    let pasteDiv = document.getElementById("pasteHereContainer");
+    printArray.forEach(element => {
+        let HTMLelement = document.createElement("p");
+        HTMLelement.setAttribute("id", element);
+        HTMLelement.innerHTML = "";
+        pasteDiv.appendChild(HTMLelement);
+    });
+};
+
+function populateElements(data) {
     document.getElementById("pasteCountry").innerHTML = "Country: " + data[0].name;
     document.getElementById("pastePopulation").innerHTML = "Population: " + data[0].population;
     document.getElementById("pasteArea").innerHTML = "Area: " + data[0].area;
     document.getElementById("pasteBorders").innerHTML = "Borders: " + data[0].borders;
 }
+
+function removeElementsIfExist() {
+    printArray.forEach(element => {
+        let deletingThis = document.getElementById(element);
+        if (deletingThis != null) {
+            deletingThis.parentNode.removeChild(deletingThis);
+        }
+    });
+};
