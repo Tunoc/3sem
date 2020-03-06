@@ -1,0 +1,3 @@
+Frontend exercise (last part of exercise from last week (skip the red part).
+This exercise is done in the Week9 <- restPersonsDto.
+index.js
