@@ -14,10 +14,9 @@ My notes and answers for this assignment can be found in the JS and HTML file.
 > The assigenment "Fetch and Promises" can be found in the "04-We" folder.  
 
 My notes and answers for this assignment, 1-3, can be found in the "SPA_Exercise1/src/index" folder.  
-*https://github.com/Tunoc/3sem/tree/master/Week10/04-We/SPA_Exercise1/src*  
 The rest of the exercise can be found in the "SPA_Exercise4 & SPA_Exercise4_CreateSinglePagePart" folders.  
 Look in both the public and src folder.  
-*https://github.com/Tunoc/3sem/tree/master/Week10/04-We/SPA_Exercise4_CreateSinglePagePart*  
+*https://github.com/Tunoc/3sem/tree/master/Week10/04-We*  
 And the documentation of the API;  
 *https://github.com/Tunoc/3sem/blob/master/Week10/04-We/Document_The_Api.png*  
 **Status for the assignment:** I did all the exercises from this assignment.
