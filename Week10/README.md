@@ -27,6 +27,7 @@ And the documentation of the API;
 > The assignment "CORS and Single Page Application (SPA)" can be found in the "05-Th" folder.  
 
 My notes and answers for this assignment, 1-3, can be found in the "CORSandHOISTING" folder.  
+*https://github.com/Tunoc/3sem/tree/master/Week10/05-Th*  
 **Status for the assignment:** I havent really done this assignment since i ran into something that looked like a bug to me.  
 I managed to set up some basic things and even see the results in the browser.. However i wasn't able to see the results at all in postman.  
 I ended up giving up after 2 hours of trying to get postman to work with this exercise, and no one that i asked was able to see why it shouldn't have worked.
