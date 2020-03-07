@@ -5,6 +5,7 @@
 > The assigenment "Callbacks and more" can be found in the "03-Tu" folder.  
 
 My notes and answers for this assignment can be found in the JS and HTML file.  
+*https://github.com/Tunoc/3sem/tree/master/Week10/03-Tu*  
 **Status for the assignment:** I did all the exercises from this assignment.
 ***
 
