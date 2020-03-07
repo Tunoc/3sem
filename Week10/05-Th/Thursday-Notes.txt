@@ -1,1 +1,0 @@
-I'm not able to use postman on this exercise.. I can however see the results in the browser when i call the api paths.
