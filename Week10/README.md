@@ -43,7 +43,7 @@ My notes and answers for this assignment can be found in the "SP5_AJAX_CORS" fol
 *https://github.com/Tunoc/3sem/tree/master/Week10/06-Fr/SP5_AJAX_CORS*  
 My notes and answers for this assignment can be found in the "restPersonsDto" folder.  
 *https://github.com/Tunoc/3sem/tree/master/Week09/26-We/restPersonsDto*  
-**Status for the assignment:** I did all the exercises from this assignment. Remember that the assignment from week 9 that was finished is only the last page of that assignment paper.
+**Status for the assignment:** I did all the exercises from both of these assignments. Remember that the assignment from week 9 that was finished is only the last page of that assignment paper, page 6.
 ***
 
 #### Struggles
