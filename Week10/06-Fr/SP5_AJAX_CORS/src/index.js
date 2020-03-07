@@ -30,7 +30,10 @@ eventBubbling.addEventListener("click", (element) => {
 });
 
 function onLand(element) {
-    if (element.target.id.length > 2) {
+    if (element.target.id == "Kosovo") {
+        //Cosovo dosn't hav an id in the SVG file. <- Therfore we can search for it with the full name.
+        fetchFunction("https://restcountries.eu/rest/v2/name/" + element.target.id + "?fullText=trueCode", pasteItAll);
+    } else if (element.target.id.length > 2) {
         fetchFunction("http://restcountries.eu/rest/v1/alpha?codes=" + element.target.parentNode.id, pasteItAll);
     } else {
         fetchFunction("http://restcountries.eu/rest/v1/alpha?codes=" + element.target.id, pasteItAll);
