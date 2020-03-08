@@ -4,7 +4,7 @@
     Fetch data from api.
 */
 
-var prev;
+var prev = null;
 
 function fetchFunction(fetchUrl, callback) {
     fetch(fetchUrl)
@@ -41,20 +41,31 @@ function onLand(element) {
     }
 }
 
+/*
+    I am using the keywords that we recieve from the fetch call and add them in the list down below here.
+    This gives me the opportunity to increase the amount of data i want to show and decrease it with just adding 1 extra parameter.
+    Dynamic JavaScript.
+    http://restcountries.eu/rest/v1/alpha?codes=dk
+    ^ for example - "altSpellings", "languages" or "timezones"
+*/
+var printArray = ["ifNotALandHere", "name", "population", "area", "borders"];
+
+/*
+    For the not on the map and paste it all, i also could have made a check if the fields allready have been generated then don't delete them
+    But just blank them out. If we have to generate and remove all the fields each time, depending on data size that would probablt be quite taxing
+    on the systems?
+*/
 function notOnTheMap() {
     removeElementsIfExist();
     generateHTMLelements();
     document.getElementById("ifNotALandHere").innerHTML = "Not a land";
 }
 
-
-
-var printArray = ["ifNotALandHere", "pasteCountry", "pastePopulation", "pasteArea", "pasteBorders"];
-
 function pasteItAll(data) {
     removeElementsIfExist();
     generateHTMLelements();
     populateElements(data);
+    document.getElementById("ifNotALandHere").innerHTML = "";
 }
 
 function generateHTMLelements() {
@@ -68,10 +79,16 @@ function generateHTMLelements() {
 };
 
 function populateElements(data) {
-    document.getElementById("pasteCountry").innerHTML = "Country: " + data[0].name;
-    document.getElementById("pastePopulation").innerHTML = "Population: " + data[0].population;
-    document.getElementById("pasteArea").innerHTML = "Area: " + data[0].area;
-    document.getElementById("pasteBorders").innerHTML = "Borders: " + data[0].borders;
+    let object = data[0];
+    printArray.forEach(element => {
+        document.getElementById(element).innerHTML = element.charAt(0).toUpperCase() + element.substring(1) + ": " + object[element];
+    });
+    /*
+        document.getElementById("pasteCountry").innerHTML = "Country: " + data[0].name;
+        document.getElementById("pastePopulation").innerHTML = "Population: " + data[0].population;
+        document.getElementById("pasteArea").innerHTML = "Area: " + data[0].area;
+        document.getElementById("pasteBorders").innerHTML = "Borders: " + data[0].borders;
+    */
 }
 
 function removeElementsIfExist() {
