@@ -43,8 +43,7 @@ function onLand(element) {
 
 /*
     I am using the keywords that we recieve from the fetch call and add them in the list down below here.
-    This gives me the opportunity to increase the amount of data i want to show and decrease it with just adding 1 extra parameter.
-    Dynamic JavaScript.
+    This gives me the opportunity to increase the amount of data i want to show and decrease it with just adding/removing 1 extra parameter.
     http://restcountries.eu/rest/v1/alpha?codes=dk
     ^ for example - "altSpellings", "languages" or "timezones"
 */
