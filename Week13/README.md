@@ -45,4 +45,5 @@ I have linked to the src folders of the exercises down below.
 
 #### Struggles
 
-I did have some defineate struggels with the (react-crud-rest-exercise-master) thursday assignment. I had a hard time getting started and needed quite alot of help to complete it. It made the entire thing even harder because it is the first virtual week. Not easy getting a hold of people to help..
+I did have some defineate struggels with the (react-crud-rest-exercise-master) thursday assignment. I had a hard time getting started and still needed help to complete it. It made the entire thing even harder because it is the first virtual week with lectures..
+However after i completed the thursday exercise i was able to make the friday exercise alone and without any struggels.
