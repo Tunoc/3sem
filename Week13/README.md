@@ -42,3 +42,7 @@ I have linked to the src folders of the exercises down below.
 *https://github.com/Tunoc/3sem/tree/master/Week13/27-Fr/ReactStateandFetch-master/src*  
 **Status for the assignment:** I did all the exercises from this assignment.
 ***
+
+#### Struggles
+
+I did have some defineate struggels with the (react-crud-rest-exercise-master) thursday assignment. I had a hard time getting started and needed quite alot of help to complete it. It made the entire thing even harder because it is the first virtual week. Not easy getting a hold of people to help..
