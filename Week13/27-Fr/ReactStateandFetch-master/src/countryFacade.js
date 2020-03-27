@@ -23,18 +23,18 @@ function handleHttpErrors(res) {
 }
 
 const countryFacade = () => {
-
   const getLabels = () => {
     return fetch(URL_Label).then(handleHttpErrors);
-  }
+  };
 
   const getCountries = () => {
     return fetch(URL_Countries).then(handleHttpErrors);
-  }
+  };
+
   return {
     getLabels,
     getCountries
-  }
-}
+  };
+};
 
-export default  countryFacade;
+export default countryFacade();
