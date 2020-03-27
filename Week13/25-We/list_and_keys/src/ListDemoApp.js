@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 function NumberList({ numbers }) {
-  console.log("--NUMBERS -->", numbers);
   const listItems = numbers.map(number => (
-    <ul key={numbers.indexOf(number)}>
-      <li>{number}</li>
-    </ul>
+    <li key={numbers.indexOf(number)}>{number}</li>
   ));
-  return listItems;
+  return <ul>{listItems}</ul>;
 }
+
 function ListDemo(props) {
   console.log(props.numbers);
   return (
