@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 import { Company } from "./Company";
 import { FindBook } from "./FindBook";
@@ -17,7 +17,7 @@ export default function NestingExample({ bookFacade }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let history = useHistory();
 
-  const setLoginStatus = status => {
+  const setLoginStatus = (status) => {
     setIsLoggedIn(status);
     history.push("/");
   };
